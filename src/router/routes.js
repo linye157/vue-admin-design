@@ -11,15 +11,69 @@ import Layout from '../layout'
 
 export const asyncRoutes = [
   {
+    path: '/ml-system',
+    name: 'MLSystem',
+    component: Layout,
+    redirect: '/ml-system/workflow',
+    children: [
+      {
+        path: 'workflow',
+        name: 'MLSystemWorkflow',
+        component: () => import('../views/predict/MLSystem'),
+        meta: {
+          title: '机器学习工作流',
+          icon: 'el-icon-s-operation',
+          fixed: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'MLDashboard',
+        component: () => import('../views/predict/Dashboard'),
+        meta: {
+          title: '机器学习仪表盘',
+          icon: 'el-icon-s-data',
+          fixed: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/data',
+    name: 'Data',
+    component: Layout,
+    redirect: '/data/loader',
+    children: [
+      {
+        path: 'loader',
+        name: 'DataLoader',
+        component: () => import('../views/predict/DataLoader'),
+        meta: {
+          title: '数据加载',
+          icon: 'el-icon-upload',
+          fixed: true
+        }
+      }
+    ]
+  },
+  {
     path: '/train',
     name: 'Train',
     component: Layout,
-    redirect: '/train',
+    redirect: '/train/models',
     children: [
       {
-        path: 'train',
-        name: 'TrainModel',
-        component: () => import('../views/predict/Train'),
+        path: 'models',
+        name: 'ModelTraining',
+        component: () => import('../views/predict/ModelTraining'),
         meta: {
           title: '模型训练',
           icon: 'el-icon-s-platform',
@@ -35,15 +89,15 @@ export const asyncRoutes = [
     redirect: '/predict-page/predict',
     meta: {
       title: '性能预测',
-      icon: 'vue-dsn-icon-bug'
+      icon: 'el-icon-s-marketing'
     },
     children: [
       {
         path: 'predict',
         name: 'PredictModel',
-        component: () => import('../views/predict/Predict'),
+        component: () => import('../views/predict/PredictionPage'),
         meta: {
-          title: '文件预测',   
+          title: '模型预测',   
         }
       },
       {
@@ -68,7 +122,7 @@ export const asyncRoutes = [
         component: () => import('../views/predict/Optim'),
         meta: {
           title: '参数优化',
-          icon: 'el-icon-s-data',
+          icon: 'el-icon-s-tools',
           fixed: true
         }
       }
@@ -86,7 +140,7 @@ export const asyncRoutes = [
         component: () => import('../views/predict/Detect'),
         meta: {
           title: '缺陷检测',
-          icon: 'el-icon-s-data',
+          icon: 'el-icon-warning',
           fixed: true
         }
       }
